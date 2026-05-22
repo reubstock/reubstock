@@ -10,16 +10,13 @@ const albert = Albert_Sans({
 });
 
 export const metadata: Metadata = {
-  // Pinned to the Vercel URL until reubstock.com DNS finishes propagating
-  // from GoDaddy. Swap back to "https://reubstock.com" once dig +short reubstock.com
-  // returns 76.76.21.21.
-  metadataBase: new URL("https://reubstock-site.vercel.app"),
+  metadataBase: new URL("https://reubstock.com"),
   title: "reubstock — Reuben Steiger",
   description: "Things I make and things I write, by Reuben Steiger.",
   openGraph: {
     title: "reubstock",
     description: "Things I make and things I write, by Reuben Steiger.",
-    url: "https://reubstock-site.vercel.app",
+    url: "https://reubstock.com",
     siteName: "reubstock",
     type: "website",
     images: [
