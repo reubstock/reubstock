@@ -10,6 +10,7 @@ const albert = Albert_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://reubstock.com"),
   title: "reubstock — Reuben Steiger",
   description: "Things I make and things I write, by Reuben Steiger.",
   openGraph: {
@@ -18,6 +19,20 @@ export const metadata: Metadata = {
     url: "https://reubstock.com",
     siteName: "reubstock",
     type: "website",
+    images: [
+      {
+        url: "/images/og.jpg",
+        width: 1200,
+        height: 876,
+        alt: "A wall of shelves filled with collected pottery.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "reubstock",
+    description: "Things I make and things I write, by Reuben Steiger.",
+    images: ["/images/og.jpg"],
   },
 };
 
