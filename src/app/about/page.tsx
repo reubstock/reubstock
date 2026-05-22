@@ -28,15 +28,18 @@ export default function AboutPage() {
 
         <div className="space-y-6 text-lg leading-relaxed">
           <p>
-            Hi, I&apos;m Reuben. {/* TODO: replace with your bio */}
-            Write a paragraph or two here — who you are, what you think about, what
-            you&apos;re building right now. The voice that runs through Fellow Travelers is
-            the right voice for this section.
+            Reuben Steiger is a writer and entrepreneur based in Princeton, NJ.
+            Over a 25-year career he has helped found companies like Second Life,
+            forming industries like the Metaverse and Bitcoin. Steiger has also
+            led global innovation for companies such as Interpublic and Omnicom.
+            His current focus is on AI, where he advises a variety of public and
+            private clients on scaling and gaining adoption for world-changing
+            technologies.
           </p>
           <p>
-            {/* TODO: a second paragraph if you want one — origin, current obsession, or a
-            line about what you&apos;d like to be reached about. */}
-            You can put a second paragraph here.
+            Steiger&rsquo;s writing is devoted to making complex subjects easy to
+            understand and turning serious ideas upside down. He holds a BA from
+            Brown University and collects books about the future.
           </p>
         </div>
 
