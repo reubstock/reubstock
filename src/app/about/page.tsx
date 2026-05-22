@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "About — reubstock",
@@ -11,6 +12,19 @@ export default function AboutPage() {
         <header className="border-t border-rule pt-4 mb-10">
           <h1 className="text-4xl sm:text-5xl tracking-tight">About</h1>
         </header>
+
+        <div className="mb-10">
+          <div className="relative w-40 h-40 sm:w-52 sm:h-52 overflow-hidden rounded-md border border-border">
+            <Image
+              src="/images/headshot.jpg"
+              alt="Reuben Steiger"
+              fill
+              sizes="(min-width: 640px) 208px, 160px"
+              className="object-cover"
+              priority
+            />
+          </div>
+        </div>
 
         <div className="space-y-6 text-lg leading-relaxed">
           <p>
