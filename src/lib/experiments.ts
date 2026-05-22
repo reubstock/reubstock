@@ -11,11 +11,11 @@ export type Experiment = {
 // Order = reverse-chronological. Featured tiles appear up top, the rest flow into the grid.
 export const experiments: Experiment[] = [
   {
-    slug: "taste",
-    title: "TASTE",
-    blurb: "A fictional AI-native agency that doesn't exist (yet).",
-    href: "https://taste-rouge.vercel.app",
-    image: "/experiments/taste.jpg",
+    slug: "drug-simulator",
+    title: "Drug Simulator",
+    blurb: "Pick a substance, set a dose, watch what happens.",
+    href: "https://drug-simulator.vercel.app",
+    image: "/experiments/drug-simulator.jpg",
     year: 2026,
     featured: true,
   },
@@ -38,11 +38,11 @@ export const experiments: Experiment[] = [
     featured: true,
   },
   {
-    slug: "drug-simulator",
-    title: "Drug Simulator",
-    blurb: "Pick a substance, set a dose, watch what happens.",
-    href: "https://drug-simulator.vercel.app",
-    image: "/experiments/drug-simulator.jpg",
+    slug: "taste",
+    title: "TASTE",
+    blurb: "A fictional AI-native agency that doesn't exist (yet).",
+    href: "https://taste-rouge.vercel.app",
+    image: "/experiments/taste.jpg",
     year: 2026,
   },
   {
