@@ -9,6 +9,10 @@ export type Post = {
 
 const FEED_URL = "https://reubensteiger.substack.com/feed";
 
+// Titles listed here are pinned to the top of the Writing column in the
+// order they appear, regardless of pubDate. Match is exact (case-sensitive).
+const PINNED_TITLES = ["Collect into your Life"];
+
 function decodeEntities(s: string): string {
   return s
     .replace(/&amp;/g, "&")
@@ -73,7 +77,14 @@ export async function fetchPosts(): Promise<Post[]> {
         excerpt,
       };
     });
-    return posts.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
+    const sorted = posts.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
+    // Apply pins: pinned posts move to the top in PINNED_TITLES order; rest
+    // stay in their natural reverse-chronological order.
+    const pinned = PINNED_TITLES
+      .map((title) => sorted.find((p) => p.title === title))
+      .filter((p): p is Post => Boolean(p));
+    const rest = sorted.filter((p) => !PINNED_TITLES.includes(p.title));
+    return [...pinned, ...rest];
   } catch {
     return [];
   }
