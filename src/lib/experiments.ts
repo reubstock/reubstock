@@ -8,17 +8,8 @@ export type Experiment = {
   featured?: boolean;
 };
 
-// Order = reverse-chronological. Featured tiles appear up top, the rest flow into the grid.
+// Order = display order in the Making column, top to bottom.
 export const experiments: Experiment[] = [
-  {
-    slug: "drug-simulator",
-    title: "Drug Simulator",
-    blurb: "Pick a substance, set a dose, watch what happens.",
-    href: "https://drug-simulator.vercel.app",
-    image: "/experiments/drug-simulator.jpg",
-    year: 2026,
-    featured: true,
-  },
   {
     slug: "dreams",
     title: "Dreams",
@@ -26,16 +17,6 @@ export const experiments: Experiment[] = [
     href: "https://dreams-livid.vercel.app",
     image: "/experiments/dreams.jpg",
     year: 2026,
-    featured: true,
-  },
-  {
-    slug: "cosmic-calendar",
-    title: "Cosmic Calendar",
-    blurb: "Your life is 0.23 seconds long. A five-zoom anchor.",
-    href: "https://cosmic-calendar-pied.vercel.app",
-    image: "/experiments/cosmic-calendar.jpg",
-    year: 2026,
-    featured: true,
   },
   {
     slug: "taste",
@@ -43,6 +24,22 @@ export const experiments: Experiment[] = [
     blurb: "A fictional AI-native agency that doesn't exist (yet).",
     href: "https://taste-rouge.vercel.app",
     image: "/experiments/taste.jpg",
+    year: 2026,
+  },
+  {
+    slug: "drug-simulator",
+    title: "Drug Simulator",
+    blurb: "Pick a substance, set a dose, watch what happens.",
+    href: "https://drug-simulator.vercel.app",
+    image: "/experiments/drug-simulator.jpg",
+    year: 2026,
+  },
+  {
+    slug: "cosmic-calendar",
+    title: "Cosmic Calendar",
+    blurb: "Your life is 0.23 seconds long. A five-zoom anchor.",
+    href: "https://cosmic-calendar-pied.vercel.app",
+    image: "/experiments/cosmic-calendar.jpg",
     year: 2026,
   },
   {
