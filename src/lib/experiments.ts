@@ -11,6 +11,14 @@ export type Experiment = {
 // Order = display order in the Making column, top to bottom.
 export const experiments: Experiment[] = [
   {
+    slug: "generational-spirits",
+    title: "Generational Spirits",
+    blurb: "How children and creativity bend time. A bottle at the Interval, 02014 → 02026.",
+    href: "https://generationalspirits.com",
+    image: "/experiments/generational-spirits.jpg",
+    year: 2026,
+  },
+  {
     slug: "dreams",
     title: "Dreams",
     blurb: "A diagnostic dream reader built on the Sleep & Dream Database.",
