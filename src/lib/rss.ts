@@ -10,7 +10,7 @@ export type Post = {
 const FEED_URL = "https://reubensteiger.substack.com/feed";
 
 // Posts whose Substack URL slug is listed here are never shown on the site.
-const HIDDEN_SLUGS = ["a-casino-is-a-whorehouse", "the-writing-on-the-wall"];
+const HIDDEN_SLUGS = ["a-casino-is-a-whorehouse", "the-writing-on-the-wall", "getting-extracted"];
 
 // Older posts that have aged out of the RSS feed but should still be listed.
 // They're merged with the feed and sorted by date like everything else.
