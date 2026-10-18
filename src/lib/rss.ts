@@ -13,6 +13,13 @@ const FEED_URL = "https://reubensteiger.substack.com/feed";
 // order they appear, regardless of pubDate. Match is exact (case-sensitive).
 const PINNED_TITLES = ["Collect into your Life"];
 
+// Posts whose Substack URL slug is listed here are never shown on the site.
+const HIDDEN_SLUGS = ["a-casino-is-a-whorehouse"];
+
+function isHidden(link: string): boolean {
+  return HIDDEN_SLUGS.some((slug) => link.includes(`/p/${slug}`));
+}
+
 function decodeEntities(s: string): string {
   return s
     .replace(/&amp;/g, "&")
@@ -77,7 +84,7 @@ export async function fetchPosts(): Promise<Post[]> {
         excerpt,
       };
     });
-    const sorted = posts.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
+    const sorted = posts.filter((p) => !isHidden(p.link)).sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
     // Apply pins: pinned posts move to the top in PINNED_TITLES order; rest
     // stay in their natural reverse-chronological order.
     const pinned = PINNED_TITLES
