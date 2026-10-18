@@ -9,12 +9,28 @@ export type Post = {
 
 const FEED_URL = "https://reubensteiger.substack.com/feed";
 
-// Titles listed here are pinned to the top of the Writing column in the
-// order they appear, regardless of pubDate. Match is exact (case-sensitive).
-const PINNED_TITLES = ["Collect into your Life"];
-
 // Posts whose Substack URL slug is listed here are never shown on the site.
-const HIDDEN_SLUGS = ["a-casino-is-a-whorehouse"];
+const HIDDEN_SLUGS = ["a-casino-is-a-whorehouse", "the-writing-on-the-wall"];
+
+// Older posts that have aged out of the RSS feed but should still be listed.
+// They're merged with the feed and sorted by date like everything else.
+const EXTRA_POSTS: { title: string; link: string; pubDate: string; image?: string; excerpt?: string }[] = [
+  {
+    title: "Collect into your Life",
+    link: "https://reubensteiger.substack.com/p/collect-into-your-life",
+    pubDate: "2026-05-20T12:00:00Z",
+    image:
+      "https://substackcdn.com/image/fetch/$s_!LA_F!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F958ae4bf-ce0d-44af-9e7e-4a276e9b6955_2048x1495.jpeg",
+    excerpt: "I remember my grandparents’ house in photographic detail, each view, each object and the way they made me feel.",
+  },
+  {
+    title: "A New Set of Strings",
+    link: "https://reubensteiger.substack.com/p/we-all-need-new-strings",
+    pubDate: "2026-03-12T12:00:00Z",
+    image: "https://substackcdn.com/image/youtube/w_728,c_limit/gwFwaO7cDqY",
+    excerpt: "My earliest memories are of my Dad.",
+  },
+];
 
 function isHidden(link: string): boolean {
   return HIDDEN_SLUGS.some((slug) => link.includes(`/p/${slug}`));
@@ -84,14 +100,15 @@ export async function fetchPosts(): Promise<Post[]> {
         excerpt,
       };
     });
-    const sorted = posts.filter((p) => !isHidden(p.link)).sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
-    // Apply pins: pinned posts move to the top in PINNED_TITLES order; rest
-    // stay in their natural reverse-chronological order.
-    const pinned = PINNED_TITLES
-      .map((title) => sorted.find((p) => p.title === title))
-      .filter((p): p is Post => Boolean(p));
-    const rest = sorted.filter((p) => !PINNED_TITLES.includes(p.title));
-    return [...pinned, ...rest];
+    const extras: Post[] = EXTRA_POSTS
+      .filter((e) => !posts.some((p) => p.link === e.link))
+      .map((e) => {
+        const pubDate = new Date(e.pubDate);
+        return { ...e, pubDate, date: formatDate(pubDate) };
+      });
+    return [...posts, ...extras]
+      .filter((p) => !isHidden(p.link))
+      .sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
   } catch {
     return [];
   }
