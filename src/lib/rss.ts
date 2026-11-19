@@ -12,6 +12,16 @@ const FEED_URL = "https://reubensteiger.substack.com/feed";
 // Posts whose Substack URL slug is listed here are never shown on the site.
 const HIDDEN_SLUGS = ["a-casino-is-a-whorehouse", "the-writing-on-the-wall", "getting-extracted"];
 
+// Custom thumbnails, keyed by Substack URL slug. These replace the feed's image.
+const IMAGE_OVERRIDES: Record<string, string> = {
+  "vienna-waits-for-you": "/images/writing/vienna-waits-for-you.jpg",
+};
+
+function imageOverride(link: string): string | undefined {
+  const slug = Object.keys(IMAGE_OVERRIDES).find((s) => link.includes(`/p/${s}`));
+  return slug ? IMAGE_OVERRIDES[slug] : undefined;
+}
+
 // Older posts that have aged out of the RSS feed but should still be listed.
 // They're merged with the feed and sorted by date like everything else.
 const EXTRA_POSTS: { title: string; link: string; pubDate: string; image?: string; excerpt?: string }[] = [
@@ -86,7 +96,7 @@ export async function fetchPosts(): Promise<Post[]> {
       const pubDateStr = pickTag(item, "pubDate") ?? "";
       const content = pickTag(item, "content:encoded") ?? pickTag(item, "description");
       const enclosureMatch = item.match(/<enclosure[^>]+url=["']([^"']+)["']/i);
-      const image = enclosureMatch?.[1] ?? firstImage(content);
+      const image = imageOverride(link) ?? enclosureMatch?.[1] ?? firstImage(content);
       const excerpt = content
         ? decodeEntities(content.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()).slice(0, 200)
         : undefined;
